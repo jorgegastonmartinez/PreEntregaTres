@@ -1,6 +1,8 @@
 let productosEnCarrito = localStorage.getItem("productos-en-carrito");
 productosEnCarrito = JSON.parse(productosEnCarrito);
 
+let datosCompras = JSON.parse(localStorage.getItem("datos-compras")) || [];
+
 const contenedorCarritoVacio = document.querySelector("#carrito-vacio");
 const contenedorCarritoTitulo = document.querySelector("#carrito-titulo")
 const contenedorCarritoProductos = document.querySelector("#carrito-productos");
@@ -10,6 +12,7 @@ let botonesEliminar = document.querySelectorAll(".carrito-producto-eliminar");
 const botonVaciar = document.querySelector("#carrito-acciones-vaciar");
 const contenedorTotal = document.querySelector("#total");
 const botonComprar = document.querySelector("#carrito-acciones-comprar");
+const formularioPagos = document.getElementById("formularioPagos");
 
 function cargarProductosCarrito() {
     if (productosEnCarrito && productosEnCarrito.length > 0) {
@@ -129,6 +132,7 @@ Swal.fire({
 
     productosEnCarrito.length = 0;
     localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
+
     cargarProductosCarrito();
     }
   })
@@ -139,7 +143,21 @@ function actualizarTotal() {
     total.innerText = `$${totalCalculado}`;
 }
 
-botonComprar.addEventListener("click", comprarCarrito);
+botonComprar.addEventListener("click", function() {
+    const nombreCompra = document.getElementById("nombre-compra").value;
+    const apellidoCompra = document.getElementById("apellido-compra").value;
+    const emailCompra = document.getElementById("email-compra").value;
+    const celularCompra = document.getElementById("celular-compra").value;
+    const pagoTransferencia = document.getElementById("pago-transferencia").checked;
+    const pagoCredito = document.getElementById("pago-credito").checked;
+    const pagoDebito = document.getElementById("pago-debito").checked;
+
+    if (nombreCompra.trim() !== "" && apellidoCompra.trim() !== "" && emailCompra.trim() !== "" && celularCompra.trim() !== "" && (pagoTransferencia || pagoCredito || pagoDebito)) {
+        comprarCarrito(); 
+    } else {
+        Swal.fire("¡Completar el formulario con todos tus datos para realizar la compra!");
+    }
+});
 function comprarCarrito() {
     Swal.fire({
         title: '¿Confirmar compra?',
@@ -158,16 +176,27 @@ function comprarCarrito() {
                     text: 'Te enviaremos la confirmación por mail',
                     confirmButtonText: 'OK',
                     confirmButtonColor: '#253A2F',
-                });
+                });  
 
-        productosEnCarrito.length = 0;
-        localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
-                
-        contenedorCarritoVacio.classList.add("disabled");
-        contenedorCarritoTitulo.classList.add("disabled");
-        contenedorCarritoProductos.classList.add("disabled");
-        contenedorCarritoAcciones.classList.add("disabled");
-        contenedorCarritoComprado.classList.remove("disabled");
+                const nombreCompra = document.getElementById("nombre-compra").value;
+                const apellidoCompra = document.getElementById("apellido-compra").value;
+                const emailCompra = document.getElementById("email-compra").value;
+                const montoCompra = productosEnCarrito.reduce((acc, producto) => acc + (producto.precio * producto.cantidad), 0);
+            
+                const unaCompra = new Compra(nombreCompra, apellidoCompra, emailCompra, montoCompra);
+            
+                datosCompras.push(unaCompra);
+                localStorage.setItem("datos-compras", JSON.stringify(datosCompras));
+
+            productosEnCarrito.length = 0;
+            localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
+            formularioPagos.reset();
+
+            contenedorCarritoVacio.classList.add("disabled");
+            contenedorCarritoTitulo.classList.add("disabled");
+            contenedorCarritoProductos.classList.add("disabled");
+            contenedorCarritoAcciones.classList.add("disabled");
+            contenedorCarritoComprado.classList.remove("disabled");
         }
-    })
+    })      
 };

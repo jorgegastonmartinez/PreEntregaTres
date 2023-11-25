@@ -73,6 +73,29 @@
     </header>
     <main>
         <section>
+            <div class="contenedor-pagos">
+                <h2>INGRESÁ TUS DATOS PARA CONFIRMAR LA COMPRA</h2>
+                <form class="footer-pagos" id="formularioPagos">              
+                    <input type="nombre" placeholder="Nombre" id="nombre-compra"> 
+                    <input type="apellido" placeholder="Apellido" id="apellido-compra"> 
+                    <input type="email" placeholder="Email" id="email-compra">  
+                    <input type="text" placeholder="Celular" id="celular-compra">
+                    <div class="contenedor-medio-pago">
+                        <h5>Seleccione el medio de pago</h5>
+                        <label>Transferencia
+                            <input type="radio" name="pago" id="pago-transferencia">
+                        </label>
+                        <label>Crédito
+                            <input type="radio" name="pago" id="pago-credito">
+                        </label>
+                        <label>Débito
+                            <input type="radio" name="pago" id="pago-debito">
+                        </label>
+                    </div>
+                </form>
+            </div>
+        </section>
+        <section>
             <ul>
                 <li>
                     <a class="boton-volver" href="./tiendaonline.html"><i class="bi bi-cart-plus"></i>Seguir comprando</a>
@@ -82,10 +105,8 @@
         <section>
             <h1 id="carrito-titulo" class="titulo-principal disabled">MIS COMPRAS</h1>
             <div class="contenedor-carrito">
-                <p id="carrito-vacio" class="carrito-vacio">Tu carrito está vacío</p>
-           
+                <p id="carrito-vacio" class="carrito-vacio">Aún no tienes compras!<br>Haz click en seguir comprando.</p>
                 <div id="carrito-productos" class="carrito-productos disabled">
-          
                 </div>
                     <div id="carrito-acciones" class="carrito-acciones disabled">
                         <div class="carrito-acciones-izquierda">
@@ -151,6 +172,7 @@
     
      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+     <script src="../clases/registroCompras.js"></script>
     <script src="../js/carrito.js"></script>
     <script src="../js/menu.js"></script>
 </body>

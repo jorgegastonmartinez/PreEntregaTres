@@ -116,4 +116,4 @@ function actualizarNumerito() {
     if (nuevoNumerito > 0) {
         numeritoCarrito.innerText = nuevoNumerito;
     }
-}
+};

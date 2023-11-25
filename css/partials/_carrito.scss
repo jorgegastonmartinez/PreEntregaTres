@@ -1,6 +1,51 @@
 ul {
     list-style: none;
 }
+@mixin flex-center-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.contenedor-pagos {
+    @include flex-center-center;
+    flex-direction: column;
+    padding: 5rem 0 3rem 0;
+
+    h2 {
+        text-align: center;
+        font-size: 1.5rem;
+    }
+
+    .footer-pagos {
+        display: flex;
+        flex-direction: column; 
+        min-width: 30rem;
+        padding: 2rem;
+        border-radius: 5px;
+        input {
+            padding: .7rem;
+            border: none;
+            font-size: 1rem;
+            border-radius: 5px;
+            margin: .5rem;
+        }
+        .contenedor-medio-pago {
+            display: flex;
+            flex-direction: column;
+            font-size: 1.2rem;
+            padding: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+
+            h5 {
+                display: flex;
+                align-content: center;
+                font-size: 1.5rem;
+                padding-top: 1rem;
+            }
+        }
+    }
+}
 .contenedor-carrito {
     display: flex;
     flex-direction: column;
@@ -15,7 +60,7 @@ ul {
     line-height: 23px;
     display: flex;
     gap: 1rem;
-    padding-top: 3rem;
+    padding-top: 1rem;
     padding-left: 5rem;
 }
 .carrito-vacio {

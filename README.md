@@ -1,6 +1,6 @@
 # Título del Proyecto
 
-Entrega Final.
+Re-Entrega Final.
 Curso Javascript.
 Comisión 47060.
 
@@ -24,7 +24,8 @@ Contiene:
 2. Tienda para realizar un pedido de productos, a través de botones que agregan el pedido a un carrito.
 3. Filtrado de productos por categorías.
 4. Un carrito de compras, donde se puede borrar productos de forma individual, vaciar el carrito por completo y ver los detalles de todos los productos añadidos al carrito.
-5. Finalizar compra.
+5. Finalizar compra, solo si, se cargan todos los datos del formulario.
+6. Dirigirse a pages/historialCompras.html para ver todo el historial de compras almacenado en el localStorage. Esta oculto para no interferir en la experiencia del usuario.
 
 
 # Instrucciones de uso
@@ -34,7 +35,8 @@ Contiene:
 - Con el button "agregar al carrito" seleccione los productos que desee comprar. 
 - Para realizar el pedido, dirigirse al carrito de compras, ubicado en la parte superior.
 - Si hay productos añadidos al carrito, se mostrarán con un númerito al costado.
-- Allí podrás agregar mas productos (volviendo a la tienda) eliminar productos, vaciar carrito, ver los precios detallados, el subtotal de cada producto, el total de la sumatoria de todos los productos agregados al carrito y finalizar la compra.
+- Allí podrás agregar mas productos (volviendo a la tienda) eliminar productos, vaciar carrito, ver los precios detallados, el subtotal de cada producto, el total de la sumatoria de todos los productos agregados al carrito y finalizar la compra, cuando los datos del formulario se cargaron correctamente.
+- Dentro de pages/historialCompras.html se mostraran detalladas todas las compras.
 
 
 # Contacto
